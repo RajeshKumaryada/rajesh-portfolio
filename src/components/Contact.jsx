@@ -1,13 +1,57 @@
+import emailjs from "@emailjs/browser";
+import { useRef, useState } from "react";
+
+const contactEmail = import.meta.env.VITE_CONTACT_EMAIL;
+const githubUrl = import.meta.env.VITE_GITHUB_URL;
+const linkedinUrl = import.meta.env.VITE_LINKEDIN_URL;
+
+const emailServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const emailTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const emailPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
 export default function Contact() {
+  const form = useRef();
+
+  const [status, setStatus] = useState("");
+  const [isSending, setIsSending] = useState(false);
+
+  const sendEmail = async (e) => {
+    e.preventDefault();
+
+    setIsSending(true);
+    setStatus("");
+
+    try {
+      await emailjs.sendForm(
+        emailServiceId,
+        emailTemplateId,
+        form.current,
+        emailPublicKey
+      );
+
+      setStatus("success");
+      form.current.reset();
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+
+      setStatus("error");
+    } finally {
+      setIsSending(false);
+    }
+  };
+
   return (
     <section id="contact" className="section section-alt">
       <div className="container">
+        {/* Section Title */}
         <div className="section-title">
           <span>06.</span>
           <h2>Contact Me</h2>
         </div>
 
         <div className="contact-grid">
+
+          {/* Contact Information */}
           <div className="contact-content">
             <h3>Let's work together</h3>
 
@@ -17,36 +61,49 @@ export default function Contact() {
             </p>
 
             <div className="contact-links">
-              <a href="mailto:rjshkumaryadav3@gmail.com">
-                📧 rjshkumaryadav3@gmail.com
+
+              {/* Email */}
+              <a href={`mailto:${contactEmail}`}>
+                📧 {contactEmail}
               </a>
 
+              {/* LinkedIn */}
               <a
-                href="https://www.linkedin.com/in/rajesh-kyadav"
+                href={linkedinUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 💼 LinkedIn
               </a>
 
+              {/* GitHub */}
               <a
-                href="https://github.com/RajeshKumaryada"
+                href={githubUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 💻 GitHub
               </a>
+
             </div>
           </div>
 
+          {/* Contact Form */}
           <form
+            ref={form}
             className="contact-form"
-            action="mailto:rjshkumaryadav3@gmail.com"
-            method="POST"
-            encType="text/plain"
+            onSubmit={sendEmail}
           >
-            <input type="text" name="name" placeholder="Your Name" required />
 
+            {/* Name */}
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              required
+            />
+
+            {/* Email */}
             <input
               type="email"
               name="email"
@@ -54,6 +111,7 @@ export default function Contact() {
               required
             />
 
+            {/* Subject */}
             <input
               type="text"
               name="subject"
@@ -61,6 +119,7 @@ export default function Contact() {
               required
             />
 
+            {/* Message */}
             <textarea
               name="message"
               rows="6"
@@ -68,9 +127,29 @@ export default function Contact() {
               required
             ></textarea>
 
-            <button type="submit" className="btn primary-btn">
-              Send Message
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="btn primary-btn"
+              disabled={isSending}
+            >
+              {isSending ? "Sending..." : "Send Message"}
             </button>
+
+            {/* Success Message */}
+            {status === "success" && (
+              <p className="form-status success">
+                ✅ Message sent successfully!
+              </p>
+            )}
+
+            {/* Error Message */}
+            {status === "error" && (
+              <p className="form-status error">
+                ❌ Failed to send message. Please try again.
+              </p>
+            )}
+
           </form>
         </div>
       </div>
