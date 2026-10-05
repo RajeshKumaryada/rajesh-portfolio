@@ -727,3 +727,82 @@
 .form-status.error {
   color: #dc2626;
 }
+
+.code-content {
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.code-line,
+.code-property,
+.code-expand {
+  font-family: "Fira Code", "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.code-property {
+  padding-left: 20px;
+}
+
+.code-expand {
+  padding-left: 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease;
+  border-radius: 4px;
+}
+
+.code-expand:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.code-expand.active {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.arrow {
+  display: inline-block;
+  width: 20px;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.code-nested {
+  padding-left: 42px;
+}
+
+.code-array-item {
+  line-height: 1.8;
+}
+
+.code-keyword {
+  color: #c084fc;
+}
+
+.code-variable {
+  color: #60a5fa;
+}
+
+.code-key {
+  color: #67e8f9;
+}
+
+.code-string {
+  color: #86efac;
+}
+
+.code-boolean {
+  color: #fbbf24;
+}
+
+.code-bracket {
+  color: #e5e7eb;
+}
+
+.collapsed {
+  color: #64748b;
+  font-style: italic;
+  margin-left: 5px;
+}
+
