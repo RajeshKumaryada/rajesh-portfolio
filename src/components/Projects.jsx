@@ -74,9 +74,24 @@ const projects = [
     ],
   },
   {
-   title: "Work Report Portal - CRM & User Panel",
+   title: "Work Report Portal - CRM Panel",
   description:
-    "Built and maintained a centralized employee work management portal with CRM and User/Employee panels. Implemented live task tracking, task assignment, feedback, working-user monitoring, responsibility management, attendance and hourly attendance, late warning records, document management, notifications, leave, salary slips, job openings, referral resumes, screenshots, to-do lists and team information.",
+    "Built and maintained a centralized employee work management portal with CRM and panels. Implemented live task tracking, task assignment, feedback, working-user monitoring, responsibility management, attendance and hourly attendance, late warning records, document management, notifications, leave, salary slips, job openings, referral resumes, screenshots, to-do lists and team information ect.",
+  technologies: [
+    "Laravel",
+    "Blade",
+    "jQuery",
+    "AJAX",
+    "MySQL",
+    "JavaScript",
+    "Bootstrap",
+  ],
+  },
+
+  {
+   title: "Work Report Portal - User Panel",
+  description:
+    "Built and maintained a centralized employee work management portal with User/Employee panels. Implemented live task tracking, task assignment, feedback, working-user monitoring, responsibility management, attendance and hourly attendance, late warning records, document management, notifications, leave, salary slips, job openings, referral resumes, screenshots, to-do lists and team information ect.",
   technologies: [
     "Laravel",
     "Blade",
